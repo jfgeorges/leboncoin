@@ -1,33 +1,225 @@
-.App {
-  text-align: center;
+@import url("./assets/css/reset.css");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+
+* {
+  box-sizing: border-box;
+}
+li {
+  list-style-type: none;
+}
+body {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  background-color: #f7f8f8;
+}
+.container {
+  margin: auto;
+  max-width: 1068px;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.bandeau {
+  width: 100%;
+  height: 60px;
+  position: fixed;
+  background-color: rgb(245, 107, 42);
+  z-index: 1;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.bandeau-filter {
+  width: 100%;
+  top: 60px;
+  height: 130px;
+  position: relative;
+  background-color: #e6ebef;
+  z-index: 1;
+}
+.main {
+  position: relative;
+  top: 60px;
+}
+header {
+  height: inherit;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+  /* text-decoration: none; */
+}
+
+a,
+a:visited {
+  text-decoration: none;
+}
+header a,
+header a:visited {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.nb-offer {
+  font-size: 13px;
+  line-height: 21px;
+  font-weight: bold;
+}
+.card-container {
+  max-width: 755px;
+}
+.list-item {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  position: relative;
+  height: 170px;
+  margin-bottom: 1rem;
+  background-color: white;
+  box-shadow: rgb(230, 235, 239) 1px 1px 8px 1px;
+  overflow: hidden;
+  transition: all 0.2s ease-in 0s;
+  border-radius: 0.5rem;
+}
+.image-placeholder {
+  min-height: 170px;
+  width: 240px;
+  background-color: #eee;
+  border-radius: 5px;
+}
+h3 {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: bold;
+  color: #1a1a1a;
+  margin: 10px;
+}
+.card-price {
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: bold;
+  color: rgb(245, 107, 42);
+  margin: 0 10px 10px 10px;
+}
+p {
+  font-size: 14px;
+  line-height: 21px;
+  margin: 10px;
+  color: #1a1a1a;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.pagination {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 80px;
+}
+
+.pagination span {
+  text-align: center;
+  font-size: 13px;
+  line-height: 25px;
+  cursor: pointer;
+}
+.other-page {
+  color: #4183d7;
+}
+.current-page {
+  width: 23px;
+  height: 25px;
+  font-weight: bold;
+  color: white;
+  background-color: rgb(245, 107, 42);
+  border-radius: 4px;
+}
+
+.offer {
+  margin: auto;
+  position: relative;
+  top: 80px;
+  max-width: 700px;
+}
+.card-offer-page {
+  display: flex;
+  flex-direction: column;
+  /* max-width: 700px; */
+  height: 500px;
+  margin-bottom: 2rem;
+  background-color: white;
+  box-shadow: rgb(230, 235, 239) 1px 1px 8px 1px;
+  overflow: hidden;
+  transition: all 0.2s ease-in 0s;
+  border-radius: 0.5rem;
+}
+
+.image-offer-placeholder {
+  max-width: 700px;
+  min-height: 392px;
+  background-color: #eee;
+  border-radius: 5px;
+}
+
+.offer-title {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: bold;
+  margin: 10px;
+}
+.offer-description {
+  font-size: 13px;
+  line-height: 19px;
+  margin: 10px;
+}
+.filter {
+  display: flex;
+}
+.filter input {
+  height: 36px;
+  flex: 3;
+  border: 1px solid #d8dee4;
+  border-radius: 4px;
+  padding: 0 10px;
+  margin-right: 20px;
+}
+.filter button {
+  height: 36px;
+  flex: 1;
+  border: none;
+  background-color: #4183d7;
+  border-radius: 4px;
+  color: white;
+}
+
+.signup {
+  height: 600px;
+  max-width: 600px;
+  background-color: white;
+}
+.signup h2 {
+  text-align: center;
+  font-weight: bold;
+  padding: 20px 10px;
+  margin-bottom: 30px;
+}
+.signup-form,
+.signin-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.signup-form label,
+.signin-form label {
+  color: lightslategrey;
+}
+.signup-form input,
+.signin-form input {
+  height: 40px;
+  min-width: 550px;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.disconnect {
+  cursor: pointer;
+  color: lightgray;
+}
+.disconnect:hover {
+  color: white;
 }
