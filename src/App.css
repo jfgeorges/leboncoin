@@ -223,3 +223,22 @@ p {
 .disconnect:hover {
   color: white;
 }
+
+.connected {
+  cursor: default;
+}
+.signup-menu::before {
+  /* font-family: "FontAwesome"; */
+  font-weight: 900;
+  content: "+";
+  left: -5px;
+  position: relative;
+}
+
+.login::before {
+  font-family: "FontAwesome";
+  font-weight: 900;
+  content: "\f007";
+  left: -5px;
+  position: relative;
+}

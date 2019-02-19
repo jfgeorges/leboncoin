@@ -30,8 +30,13 @@ class App extends Component {
         <>
           <Header username={this.state.username} handleDisconnection={this.handleDisconnection} />
           <Switch>
-            <Route exact={true} path="/" render={props => <Home {...props} />} />
-            <Route path="/offres" render={props => <Home {...props} />} />
+            {/* <Route exact={true} path="/" render={props => <Home {...props} />} /> */}
+            <Route
+              exact={true}
+              path="/"
+              render={props => (this.state.username !== "" ? <Redirect to="/offres" /> : <LogIn setUserId={this.setUserId} {...props} />)}
+            />
+            <Route path="/offres" render={props => (this.state.username === "" ? <Redirect to="/log_in" /> : <Home {...props} />)} />
             <Route path="/offer/:id" render={props => <Offer {...props} />} />
             <Route path="/sign_up" render={props => <SignUp setUserId={this.setUserId} {...props} />} />
             <Route

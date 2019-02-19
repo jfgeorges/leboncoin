@@ -7,7 +7,7 @@ class Header extends React.Component {
     if (this.props.username !== "") {
       return (
         <>
-          <div>{this.props.username} est connecté</div>
+          <div className="connected">{this.props.username} est connecté</div>
           <div className="disconnect" onClick={this.props.handleDisconnection}>
             Déconnexion
           </div>
@@ -16,8 +16,12 @@ class Header extends React.Component {
     }
     return (
       <>
-        <Link to="/sign_up">Créer un compte</Link>
-        <Link to="/log_in">Se connecter</Link>
+        <Link to="/sign_up" className="signup-menu">
+          Créer un compte
+        </Link>
+        <Link to="/log_in" className="login">
+          Se connecter
+        </Link>
       </>
     );
   };
