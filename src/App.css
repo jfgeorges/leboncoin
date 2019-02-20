@@ -40,7 +40,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
   color: white;
   /* text-decoration: none; */
@@ -82,6 +82,7 @@ header a:visited {
   width: 240px;
   background-color: #eee;
   border-radius: 5px;
+  object-fit: cover;
 }
 h3 {
   font-size: 20px;
@@ -128,11 +129,14 @@ p {
   border-radius: 4px;
 }
 
-.offer {
-  margin: auto;
+.offer-container {
   position: relative;
   top: 80px;
-  max-width: 700px;
+  display: flex;
+  justify-content: space-between;
+}
+.offer {
+  width: 700px;
 }
 .card-offer-page {
   display: flex;
@@ -152,6 +156,7 @@ p {
   min-height: 392px;
   background-color: #eee;
   border-radius: 5px;
+  object-fit: cover;
 }
 
 .offer-title {
@@ -165,6 +170,26 @@ p {
   line-height: 19px;
   margin: 10px;
 }
+.offer-creator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 300px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+.offer-creator img {
+  width: 70px;
+  height: 70px;
+  margin: 10px;
+}
+.offer-creator h4 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
 .filter {
   display: flex;
 }
@@ -186,36 +211,61 @@ p {
 }
 
 .signup {
+  position: relative;
+  top: 80px;
   height: 600px;
   max-width: 600px;
+  border: solid 1px rgb(235, 235, 235);
   background-color: white;
 }
-.signup h2 {
+.signup h2,
+.signup h4 {
   text-align: center;
   font-weight: bold;
   padding: 20px 10px;
   margin-bottom: 30px;
 }
+.signup h4 {
+  color: rgb(245, 72, 42);
+}
+.advert-title {
+  height: 40px;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  padding-top: 10px;
+  margin-bottom: 15px;
+  color: white;
+  background-color: rgb(97, 96, 96);
+}
 .signup-form,
-.signin-form {
+.signin-form,
+.advert-form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .signup-form label,
-.signin-form label {
+.signin-form label,
+.advert-form label {
   color: lightslategrey;
 }
 .signup-form input,
-.signin-form input {
+.signin-form input,
+.advert-form input,
+.advert-form textarea {
   height: 40px;
   min-width: 550px;
   border: 1px solid lightgrey;
   border-radius: 5px;
   margin: 10px;
   padding: 10px;
+  outline: none;
 }
-
+.advert-form textarea {
+  height: 250px;
+  resize: none;
+}
 .disconnect {
   cursor: pointer;
   color: lightgray;
@@ -228,7 +278,6 @@ p {
   cursor: default;
 }
 .signup-menu::before {
-  /* font-family: "FontAwesome"; */
   font-weight: 900;
   content: "+";
   left: -5px;
@@ -241,4 +290,41 @@ p {
   content: "\f007";
   left: -5px;
   position: relative;
+}
+
+.advert-container {
+  position: relative;
+  top: 80px;
+  height: 600px;
+  max-width: 100%;
+  border: solid 1px rgb(235, 235, 235);
+  background-color: white;
+}
+
+.advert-section-container {
+  display: flex;
+}
+
+.advert-pictures {
+  width: 490px;
+  text-align: center;
+}
+.advert-pictures button {
+  color: lightslategrey;
+  height: 30px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #d8dce0;
+  background-color: #d8dce0;
+}
+.advert-valid {
+  color: white;
+  border: 1px solid #4183d7;
+  background-color: #4183d7;
+}
+
+.advert-section-container img {
+  max-width: 200px;
+  object-fit: cover;
+  margin: 8px;
 }

@@ -7,6 +7,7 @@ import Home from "./containers/Home";
 import Offer from "./containers/Offer";
 import SignUp from "./containers/SignUp";
 import LogIn from "./containers/LogIn";
+import Publish from "./containers/Publish";
 
 class App extends Component {
   state = {
@@ -14,11 +15,15 @@ class App extends Component {
     token: Cookies.get("token") || "",
     username: Cookies.get("username") || ""
   };
-  setUserId = userAccount => {
+  setUser = userAccount => {
     Cookies.set("token", userAccount.token);
     Cookies.set("username", userAccount.account.username);
     this.setState({ userId: userAccount._id, token: userAccount.token, username: userAccount.account.username });
   };
+  getUser = () => {
+    return this.state;
+  };
+
   handleDisconnection = () => {
     Cookies.remove("token");
     Cookies.remove("username");
@@ -30,18 +35,21 @@ class App extends Component {
         <>
           <Header username={this.state.username} handleDisconnection={this.handleDisconnection} />
           <Switch>
-            {/* <Route exact={true} path="/" render={props => <Home {...props} />} /> */}
             <Route
               exact={true}
               path="/"
-              render={props => (this.state.username !== "" ? <Redirect to="/offres" /> : <LogIn setUserId={this.setUserId} {...props} />)}
+              render={props => (this.state.username !== "" ? <Redirect to="/offres" /> : <LogIn setUser={this.setUser} {...props} />)}
             />
             <Route path="/offres" render={props => (this.state.username === "" ? <Redirect to="/log_in" /> : <Home {...props} />)} />
             <Route path="/offer/:id" render={props => <Offer {...props} />} />
-            <Route path="/sign_up" render={props => <SignUp setUserId={this.setUserId} {...props} />} />
+            <Route path="/sign_up" render={props => <SignUp setUser={this.setUser} {...props} />} />
             <Route
               path="/log_in"
-              render={props => (this.state.username !== "" ? <Redirect to="/offres" /> : <LogIn setUserId={this.setUserId} {...props} />)}
+              render={props => (this.state.username !== "" ? <Redirect to="/offres" /> : <LogIn setUser={this.setUser} {...props} />)}
+            />
+            <Route
+              path="/publish"
+              render={props => (this.state.username === "" ? <Redirect to="/log_in" /> : <Publish getUser={this.getUser} {...props} />)}
             />
           </Switch>
         </>

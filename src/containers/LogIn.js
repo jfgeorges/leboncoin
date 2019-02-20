@@ -6,7 +6,7 @@ class LogIn extends React.Component {
     email: "",
     username: "",
     password: "",
-    signUpError: false
+    logInError: false
   };
 
   handleSubmit = async event => {
@@ -16,9 +16,9 @@ class LogIn extends React.Component {
         email: this.state.email,
         password: this.state.password
       });
-      this.props.setUserId(response.data);
+      this.props.setUser(response.data);
     } catch (error) {
-      this.setState({ signUpError: true });
+      this.setState({ logInError: true });
     }
   };
 
@@ -26,6 +26,13 @@ class LogIn extends React.Component {
     this.setState({
       [event.target.name]: event.target.value
     });
+  };
+
+  renderLogInError = () => {
+    if (this.state.logInError) {
+      return <h4>Identifiants erronés</h4>;
+    }
+    return null;
   };
 
   render() {
@@ -39,6 +46,7 @@ class LogIn extends React.Component {
           <input id="password" name="password" type="password" value={this.state.password} onChange={this.handleChange} />
           <input type="submit" value="Se connecter" />
         </form>
+        {this.renderLogInError()}
       </section>
     );
   }

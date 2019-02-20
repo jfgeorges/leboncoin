@@ -17,7 +17,7 @@ class SignUp extends React.Component {
         email: this.state.email,
         password: this.state.password
       });
-      this.props.setUserId(response.data);
+      this.props.setUser(response.data);
     } catch (error) {
       this.setState({ signUpError: true });
     }
@@ -31,7 +31,7 @@ class SignUp extends React.Component {
 
   renderSignUpError = () => {
     if (this.state.signUpError) {
-      return <div>Ce compte existe déjà</div>;
+      return <h4>Ce compte existe déjà</h4>;
     }
     return null;
   };
