@@ -6,20 +6,23 @@ class SignUp extends React.Component {
     email: "",
     username: "",
     password: "",
-    signUpError: false
+    signUpError: false,
+    statusError: 0,
+    errorMessage: ""
   };
 
   handleSubmit = async event => {
     event.preventDefault();
     try {
-      const response = await axios.post("https://leboncoin-api.herokuapp.com/api/user/sign_up", {
+      const response = await axios.post(this.props.dbUrl + "/user/sign_up", {
         username: this.state.username,
         email: this.state.email,
         password: this.state.password
       });
+      this.setState({ signUpError: false, statusError: 0, errorMessage: "" });
       this.props.setUser(response.data);
     } catch (error) {
-      this.setState({ signUpError: true });
+      this.setState({ signUpError: true, statusError: error.response.status, errorMessage: error.response.data.error });
     }
   };
 
@@ -31,7 +34,14 @@ class SignUp extends React.Component {
 
   renderSignUpError = () => {
     if (this.state.signUpError) {
-      return <h4>Ce compte existe déjà</h4>;
+      switch (this.state.statusError) {
+        case 422: //  Saisie incorrecte
+          return <h4>{this.state.errorMessage}</h4>;
+        case 500: // Erreur de sauvegarde Mongoose
+          return <h4>Problème: compte non sauvegardé</h4>;
+        default:
+          return <h4>Erreur lors de la création du compte</h4>;
+      }
     }
     return null;
   };

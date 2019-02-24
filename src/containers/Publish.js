@@ -8,18 +8,19 @@ class Publish extends React.Component {
     description: "",
     price: 0,
     pictures: [],
-    publishError: false
+    publishError: false,
+    created: ""
   };
   handleSubmit = async event => {
     event.preventDefault();
     const user = this.props.getUser();
     try {
       const response = await axios.post(
-        "https://leboncoin-api.herokuapp.com/api/offer/publish",
+        this.props.dbUrl + "/offer/publish",
         {
           title: this.state.title,
           description: this.state.description,
-          files: this.state.pictures,
+          pictures: this.state.pictures,
           price: Number(this.state.price)
         },
         {
@@ -28,8 +29,7 @@ class Publish extends React.Component {
           }
         }
       );
-
-      console.log("response.data", response.data);
+      this.setState({ publishError: false, created: response.data.created });
     } catch (error) {
       this.setState({ publishError: true });
     }
@@ -40,17 +40,17 @@ class Publish extends React.Component {
     });
   };
   handleFiles = pictures => {
-    console.log(pictures);
     const newPictures = [...this.state.pictures, ...pictures.base64];
     this.setState({
       pictures: newPictures
     });
   };
-  renderPublishError = () => {
+  renderPublication = () => {
     if (this.state.publishError) {
       return <div>Problème de publication, annonce non publiée.</div>;
+    } else {
+      return <div>Annonce {this.state.title} publiée.</div>;
     }
-    return null;
   };
   render() {
     const picturesArray = [];
@@ -84,7 +84,7 @@ class Publish extends React.Component {
                 <input id="price" name="price" type="text" value={this.state.price} onChange={this.handleChange} />
                 <input className="advert-valid" type="submit" value="Valider" />
               </form>
-              {this.renderPublishError()}
+              {this.renderPublication()}
             </section>
             <section className="advert-pictures">
               <ReactFileReader

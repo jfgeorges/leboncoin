@@ -9,6 +9,8 @@ import SignUp from "./containers/SignUp";
 import LogIn from "./containers/LogIn";
 import Publish from "./containers/Publish";
 
+const urlLeboncoinApi = "http://localhost:3000";
+
 class App extends Component {
   state = {
     userId: "",
@@ -38,18 +40,25 @@ class App extends Component {
             <Route
               exact={true}
               path="/"
-              render={props => (this.state.username !== "" ? <Redirect to="/offres" /> : <LogIn setUser={this.setUser} {...props} />)}
+              render={props => (this.state.username !== "" ? <Redirect to="/offers" /> : <LogIn setUser={this.setUser} {...props} />)}
             />
-            <Route path="/offres" render={props => (this.state.username === "" ? <Redirect to="/log_in" /> : <Home {...props} />)} />
-            <Route path="/offer/:id" render={props => <Offer {...props} />} />
-            <Route path="/sign_up" render={props => <SignUp setUser={this.setUser} {...props} />} />
+            <Route
+              path="/offers"
+              render={props => (this.state.username === "" ? <Redirect to="/log_in" /> : <Home {...props} dbUrl={urlLeboncoinApi} />)}
+            />
+            <Route path="/offer/:id" render={props => <Offer {...props} dbUrl={urlLeboncoinApi} />} />
+            <Route path="/sign_up" render={props => <SignUp setUser={this.setUser} {...props} dbUrl={urlLeboncoinApi} />} />
             <Route
               path="/log_in"
-              render={props => (this.state.username !== "" ? <Redirect to="/offres" /> : <LogIn setUser={this.setUser} {...props} />)}
+              render={props =>
+                this.state.username !== "" ? <Redirect to="/offers" /> : <LogIn setUser={this.setUser} {...props} dbUrl={urlLeboncoinApi} />
+              }
             />
             <Route
               path="/publish"
-              render={props => (this.state.username === "" ? <Redirect to="/log_in" /> : <Publish getUser={this.getUser} {...props} />)}
+              render={props =>
+                this.state.username === "" ? <Redirect to="/log_in" /> : <Publish getUser={this.getUser} {...props} dbUrl={urlLeboncoinApi} />
+              }
             />
           </Switch>
         </>

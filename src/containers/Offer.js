@@ -9,7 +9,7 @@ class Offer extends React.Component {
     offer: {} // On reçoit un objet, on l'initialise par défaut
   };
   componentDidMount = async () => {
-    const response = await axios.get("https://leboncoin-api.herokuapp.com/api/offer/" + this.props.match.params.id);
+    const response = await axios.get(this.props.dbUrl + "/offer/" + this.props.match.params.id);
     this.setState({ offer: response.data });
   };
   renderImage = () => {

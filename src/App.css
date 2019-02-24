@@ -38,12 +38,12 @@ body {
 header {
   height: inherit;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   font-size: 16px;
   font-weight: 600;
   color: white;
-  /* text-decoration: none; */
 }
 
 a,
@@ -55,6 +55,9 @@ header a:visited {
   color: white;
 }
 
+header img {
+  width: 149px;
+}
 .nb-offer {
   font-size: 13px;
   line-height: 21px;
@@ -268,17 +271,19 @@ p {
 }
 .disconnect {
   cursor: pointer;
-  color: lightgray;
-}
-.disconnect:hover {
-  color: white;
 }
 
 .connected {
   cursor: default;
 }
+
+.publish::before {
+  content: "+";
+  left: -5px;
+  position: relative;
+}
+
 .signup-menu::before {
-  font-weight: 900;
   content: "+";
   left: -5px;
   position: relative;

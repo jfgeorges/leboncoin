@@ -7,7 +7,7 @@ import Pagination from "../components/Pagination";
 class Home extends React.Component {
   state = { nbOffer: 0, offers: [], totalPages: 0, pageNum: 1, limit: 25 };
   componentDidMount = async () => {
-    const response = await axios.get("https://leboncoin-api.herokuapp.com/api/offer/with-count");
+    const response = await axios.get(this.props.dbUrl + "/offers");
     this.setState({ nbOffer: response.data.count, offers: response.data.offers, totalPages: Math.ceil(response.data.count / this.state.limit) });
   };
 
@@ -17,13 +17,13 @@ class Home extends React.Component {
     });
   };
   handlePages = async pageNumber => {
-    const url = "https://leboncoin-api.herokuapp.com/api/offer/with-count?skip=" + (pageNumber - 1) * 25 + "&limit=25";
+    const url = this.props.dbUrl + "/offers?skip=" + (pageNumber - 1) * 25 + "&limit=25";
     const response = await axios.get(url);
     this.setState({ nbOffer: response.data.count, offers: response.data.offers, pageNum: pageNumber });
   };
   handleFilter = async title => {
     if (title.length > 0) {
-      const url = "https://leboncoin-api.herokuapp.com/api/offer/with-count?title=" + title;
+      const url = this.props.dbUrl + "/offers?title=" + title;
       const response = await axios.get(url);
       this.setState({ nbOffer: response.data.count, offers: response.data.offers, pageNum: 1 });
     }
